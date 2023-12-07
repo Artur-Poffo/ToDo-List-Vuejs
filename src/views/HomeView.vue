@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import AddTaskInput from '@/components/AddTaskInput.vue';
-import PageHeader from '@/components/PageHeader.vue';
-import TaskCard from '@/components/TaskCard.vue';
-import { useTasksStore } from '@/stores/tasks';
+import AddTaskInput from '@/components/AddTaskInput.vue'
+import PageHeader from '@/components/PageHeader.vue'
+import TaskCard from '@/components/TaskCard.vue'
+import { useTasksStore } from '@/stores/tasks'
 
 const tasksStore = useTasksStore()
 </script>
 
 <template>
   <main>
-    <PageHeader title="To-Do List"
-      bgUrl="https://www.psicologosberrini.com.br/wp-content/uploads/lista-de-tarefas-para-mudar-sua-vida.jpeg" />
+    <PageHeader
+      title="To-Do List"
+      bgUrl="https://www.psicologosberrini.com.br/wp-content/uploads/lista-de-tarefas-para-mudar-sua-vida.jpeg"
+    />
 
     <section id="list-tasks">
       <header class="task-input">
@@ -28,7 +30,7 @@ const tasksStore = useTasksStore()
   </main>
 </template>
 
-<style scoped >
+<style scoped>
 #list-tasks {
   padding: 0 10px 20px 10px;
   max-width: 800px;

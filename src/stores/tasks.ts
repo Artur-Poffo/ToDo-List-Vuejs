@@ -1,13 +1,13 @@
-import type { ITask } from "@/interfaces/ITask";
-import { defineStore } from "pinia";
-import { uuid } from 'vue-uuid';
+import type { ITask } from '@/interfaces/ITask'
+import { defineStore } from 'pinia'
+import { uuid } from 'vue-uuid'
 
 export const useTasksStore = defineStore('tasks', {
-  state: (): {tasks: ITask[]} => {
-    const savedTasks: ITask[] = JSON.parse(localStorage.getItem('tasks') || "[]")
-    
+  state: (): { tasks: ITask[] } => {
+    const savedTasks: ITask[] = JSON.parse(localStorage.getItem('tasks') || '[]')
+
     return {
-      tasks: savedTasks,
+      tasks: savedTasks
     }
   },
 
@@ -23,14 +23,14 @@ export const useTasksStore = defineStore('tasks', {
     },
 
     toggleAsCompleted(taskId: string) {
-      const taskIndex = this.tasks.findIndex(task => task.id === taskId);
-      this.tasks[taskIndex].isDone = !this.tasks[taskIndex].isDone;
+      const taskIndex = this.tasks.findIndex((task) => task.id === taskId)
+      this.tasks[taskIndex].isDone = !this.tasks[taskIndex].isDone
 
       localStorage.setItem('tasks', JSON.stringify(this.tasks))
     },
 
     removeTask(taskId: string) {
-      const taskIndex = this.tasks.findIndex(task => task.id === taskId);
+      const taskIndex = this.tasks.findIndex((task) => task.id === taskId)
       this.tasks.splice(taskIndex, 1)
 
       localStorage.setItem('tasks', JSON.stringify(this.tasks))
