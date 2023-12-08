@@ -1,25 +1,19 @@
 <script setup lang="ts">
-import { useTasksStore } from '@/stores/tasks'
-import { TrashIcon } from '@heroicons/vue/24/solid'
+import { type TasksStore } from '@/stores/tasks';
+import { TrashIcon } from '@heroicons/vue/24/solid';
 
 const props = defineProps<{
   id: string
   content: string
   isDone: boolean
+  tasksStore: TasksStore
 }>()
-
-const tasksStore = useTasksStore()
 </script>
 
 <template>
   <article class="container">
     <div class="content">
-      <input
-        type="checkbox"
-        :checked="props.isDone"
-        class="task-checkbox"
-        @click="tasksStore.toggleAsCompleted(id)"
-      />
+      <input type="checkbox" :checked="props.isDone" class="task-checkbox" @click="tasksStore.toggleAsCompleted(id)" />
       <p>{{ props.content }}</p>
     </div>
 

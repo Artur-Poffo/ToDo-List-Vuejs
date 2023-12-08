@@ -1,28 +1,26 @@
 <script setup lang="ts">
-import AddTaskInput from '@/components/AddTaskInput.vue'
-import PageHeader from '@/components/PageHeader.vue'
-import TaskCard from '@/components/TaskCard.vue'
-import { useTasksStore } from '@/stores/tasks'
+import AddTaskInput from '@/components/AddTaskInput.vue';
+import PageHeader from '@/components/PageHeader.vue';
+import TaskCard from '@/components/TaskCard.vue';
+import { useTasksStore } from '@/stores/tasks';
 
 const tasksStore = useTasksStore()
 </script>
 
 <template>
   <main>
-    <PageHeader
-      title="To-Do List"
-      bgUrl="https://www.psicologosberrini.com.br/wp-content/uploads/lista-de-tarefas-para-mudar-sua-vida.jpeg"
-    />
+    <PageHeader title="To-Do List"
+      bgUrl="https://www.psicologosberrini.com.br/wp-content/uploads/lista-de-tarefas-para-mudar-sua-vida.jpeg" />
 
     <section id="list-tasks">
       <header class="task-input">
-        <AddTaskInput />
+        <AddTaskInput :tasksStore="tasksStore" />
       </header>
 
       <main class="tasks-container">
         <ul class="tasks-list">
           <li class="list-item" v-for="task in tasksStore.tasks" :key="task.id">
-            <TaskCard :id="task.id" :isDone="task.isDone" :content="task.content" />
+            <TaskCard :id="task.id" :isDone="task.isDone" :content="task.content" :tasksStore="tasksStore" />
           </li>
         </ul>
       </main>

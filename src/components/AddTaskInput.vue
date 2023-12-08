@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { useTasksStore } from '@/stores/tasks'
-import { PlusIcon } from '@heroicons/vue/24/solid'
-import { ref } from 'vue'
+import { type TasksStore } from '@/stores/tasks';
+import { PlusIcon } from '@heroicons/vue/24/solid';
+import { ref } from 'vue';
 
-const tasksStore = useTasksStore()
+const props = defineProps<{
+  tasksStore: TasksStore
+}>()
 
 const inputValue = ref('')
 
 function handleCreateTask(e: Event) {
-  tasksStore.addTask(inputValue.value)
+  props.tasksStore.addTask(inputValue.value)
   inputValue.value = ''
 }
 </script>

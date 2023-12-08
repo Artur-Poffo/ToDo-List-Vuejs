@@ -19,21 +19,27 @@ export const useTasksStore = defineStore('tasks', {
         isDone: false
       })
 
-      localStorage.setItem('tasks', JSON.stringify(this.tasks))
+      this.saveTasks()
     },
 
     toggleAsCompleted(taskId: string) {
       const taskIndex = this.tasks.findIndex((task) => task.id === taskId)
       this.tasks[taskIndex].isDone = !this.tasks[taskIndex].isDone
-
-      localStorage.setItem('tasks', JSON.stringify(this.tasks))
+      
+      this.saveTasks()
     },
 
     removeTask(taskId: string) {
       const taskIndex = this.tasks.findIndex((task) => task.id === taskId)
       this.tasks.splice(taskIndex, 1)
 
+      this.saveTasks()
+    },
+
+    saveTasks() {
       localStorage.setItem('tasks', JSON.stringify(this.tasks))
     }
   }
 })
+
+export type TasksStore = ReturnType<typeof useTasksStore>
